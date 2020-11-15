@@ -63,14 +63,21 @@ var Validator = (function() {
   fn.validate = function() {
     var isValid = true;
 
+    if(!('value' in this.element)) {
+      throw Error('Passed element should have value property');
+    }
     this.value = this.element.value.trim();
     this.length = this.value.length;
 
     for (var rule in this.options.rules) {
       var param = this.options.rules[rule];
 
+      if(!param)
+        throw Error(`No validation rule '${param}'`);
+
       if(!this[rule](param)) {
         isValid = false;
+        if(!this.options.messages[rule])
         this.message = _createMessage(this.options.messages[rule], {rule: param, data: this.value})
         this.options.onError.call(this);
         break;
@@ -136,7 +143,6 @@ Validator.fn.password = function() {
 };
 var validateBtn = document.getElementById('validate');
 validateBtn.addEventListener('click', function(e) {
-  debugger;
   emailInput.validate();
   passwordInput.validate();
 }, false)
