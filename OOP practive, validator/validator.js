@@ -92,7 +92,10 @@ var Validator = (function() {
   fn.required = function() { return this.length > 0 };
   fn.min = function(param) { return this.length >= param; };
   fn.max = function(param) { return this.length <= param; };
-  fn.match = function(param) { return this.rexExps[param].test(this.value); };
+  fn.match = function(param) { return this.regExps[param].test(this.value); };
+  fn.contain = function(param) { 
+    console.log(param);
+    return param.every(p => this.value.includes(p)) }
 
   return {
     init: Validate,
@@ -115,12 +118,14 @@ var emailInput = new Validator.init(document.getElementById('email'), {
   rules: {
     min: 5,
     max: 20,
-    match: 'email'
+    match: 'email',
+    contain: ['@', '.com', 'gmail']
   },
   messages: {
     min: 'Это поле должно содержать минимум %rule% символов. Значение %data% не подходит',
     max: 'Это поле должно содержать максимум %rule% символов. Значение %data% не подходит',
-    match: 'Это поле должно содержать адрес электронной почты. Значение %data% не подходит'
+    match: 'Это поле должно содержать адрес электронной почты. Значение %data% не подходит',
+    contain: 'Это поле должно содержать адрес электронной почты gmail'
   },
   onError: onError,
   onSuccess: onSuccess
