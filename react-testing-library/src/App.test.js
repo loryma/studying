@@ -1,11 +1,14 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
-//   const { getByText } = render(<App />);
-//   const linkElement = getByText(/learn react/i);
-//   expect(linkElement).toBeInTheDocument();
-
-  const { asFragment } = render(<App />);
-  expect(asFragment(<App />)).toMatchSnapshot(); 
-});
+describe("App", () => {
+  it ("renders App component", () => {
+    render(<App />);
+    expect(screen.getByText("Search:")).toBeInTheDocument();
+    expect(screen.getByRole('textbox')).toBeInTheDocument();
+    expect(screen.getByLabelText(/search/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('search text...')).toBeInTheDocument();
+    expect(screen.getByAltText('search image')).toBeInTheDocument();
+    expect(screen.getByDisplayValue('')).toBeInTheDocument();
+  })
+})
