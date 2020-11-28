@@ -28,7 +28,7 @@ function App() {
   return (
     <div>
       {user && <h2>Logged in as {user.name}</h2>}
-      <img src="" alt="search image" />
+      <img src="" alt="search image" class="image" />
       <Search value={search} onChange={handleChange}>
         Search:
       </Search>

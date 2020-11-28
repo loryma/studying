@@ -9,5 +9,9 @@ describe("App", () => {
     screen.debug();
     expect(await screen.findByText(/Logged in as/i)).toBeInTheDocument();
     screen.debug();
+    expect(screen.getByAltText(/search image/i)).toHaveClass('image');
+    expect(screen.getByLabelText(/search/i)).not.toBeRequired();
+    expect(screen.getByLabelText(/search/i)).toBeEmpty();
+    expect(screen.getByLabelText(/search/i)).toHaveAttribute('id');
   })
 })
