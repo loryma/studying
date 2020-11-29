@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'; 
 import './App.css';
+import AlgoliaSearch from './components/AlgoliaSearch';
 
 const getUser = () => Promise.resolve({id: 1, name: 'Mila'});
 
@@ -27,8 +28,9 @@ function App() {
   }
   return (
     <div>
+      <AlgoliaSearch />
       {user && <h2>Logged in as {user.name}</h2>}
-      <img src="" alt="search image" class="image" />
+      <img src="" alt="search image" className="image" />
       <Search value={search} onChange={handleChange}>
         Search:
       </Search>
