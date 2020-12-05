@@ -1,19 +1,12 @@
-import image from './images/circuit.jpg';
-import './styles/main.scss';
+import React, { useState } from 'react';
+import { render } from 'react-dom';
 
-// Create a class property without a constructor
-class Game {
-  name = 'Violin Charades'
-}
-const myGame = new Game()
-// Create paragraph node
-const p = document.createElement('p')
-p.textContent = `I like ${myGame.name}.`
+function App() {
+  const [state, setState] = useState('on');
 
-// Create heading node
-const heading = document.createElement('h1')
-heading.textContent = 'Interesting!'
+  return <button onClick={() => setState(state => state === 'on' ? 'off' : 'on')}>
+    {state}
+  </button>;
+};
 
-// Append heading node to the DOM
-const app = document.querySelector('#root')
-app.append(heading, p);
+render(<App />, document.getElementById('root'));
