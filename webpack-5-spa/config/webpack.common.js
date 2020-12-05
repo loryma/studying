@@ -1,14 +1,15 @@
-const path = require('path');
+const paths = require('./paths');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 
 module.exports = {
   entry: {
-    main: path.resolve(__dirname, './src/index.js'),
+    main: [paths.src + '/index.js'],
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
+    path: paths.build,
     filename: '[name].bundle.js',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -29,14 +30,20 @@ module.exports = {
       // CSS, PostCSS, and Sass
       {
         test: /\.(scss|css)$/,
-        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
+        use: [
+          'style-loader',
+          {loader: 'css-loader', options: {sourceMap: true, importLoaders: 1}},
+          {loader: 'postcss-loader', options: {sourceMap: true}},
+          {loader: 'sass-loader', options: {sourceMap: true}},
+        ],
       },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: 'webpack setup',
-      template: path.resolve(__dirname, './src/template.html'),
+      // favicon: paths.src +  '/images/favicon.png',
+      template: paths.src + '/template.html',
       filename: 'index.html',
     }),
     new CleanWebpackPlugin(),
