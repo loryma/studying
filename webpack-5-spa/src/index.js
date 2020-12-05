@@ -1,3 +1,6 @@
+import image from './images/circuit.jpg';
+import './styles/main.scss';
+
 // Create a class property without a constructor
 class Game {
   name = 'Violin Charades'
