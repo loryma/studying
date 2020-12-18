@@ -1,12 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
-
-function App() {
-  const [state, setState] = useState('on');
-
-  return <button onClick={() => setState(state => state === 'on' ? 'off' : 'on')}>
-    {state}
-  </button>;
-};
+import App from './App';
 
 render(<App />, document.getElementById('root'));
