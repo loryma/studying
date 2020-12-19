@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import Chat from './chat/Chat';
+
 
 function App() {
-  const [state, setState] = useState('on');
 
-  return <button onClick={() => setState(state => state === 'on' ? 'off' : 'on')}>
-    button is {state}
-  </button>;
+  return (
+    <Chat />
+  );
 };
 
 export default App;
