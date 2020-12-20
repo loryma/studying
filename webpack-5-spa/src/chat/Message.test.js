@@ -9,4 +9,12 @@ describe("renders message component", () => {
     const message = screen.getByText(/message/i);
     expect(message).toBeInTheDocument();
   });
+
+  test("sets different class depending on if message was sent by current user", () => {
+    render(<Message content='message' byMe={true} />);
+    const message = screen.getByText(/message/i);
+    expect(message).toHaveStyle({
+      backgroundColor: "#F0EE8A",
+    });
+  });
 });
