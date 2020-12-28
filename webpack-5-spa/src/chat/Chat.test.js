@@ -3,6 +3,20 @@ import { act, findByText, render, screen } from "@testing-library/react";
 import axios from "axios";
 import Chat from "./Chat.js";
 import userEvent from '@testing-library/user-event';
+import { createStore } from "redux";
+import { Provider } from 'react-redux';
+
+import reducer from '../redux';
+
+const renderWithRedux = (
+    component, 
+    { initialState, store = createStore(reducer, initialState) } = {}
+) => {
+    return {
+        ...render(<Provider store={store}>{component}</Provider>),
+        store
+    }
+};
 
 jest.mock("axios");
 
@@ -27,8 +41,9 @@ const messages = {documents: [{
 
 describe("render chat", () => {
   test("has input field", () => {
+    axios.get.mockImplementation(() => Promise.resolve({data: messages}));
     act(() => {
-      render(<Chat />);
+      renderWithRedux(<Chat />);
     });
     const inputElement = screen.getByRole('textbox');
     expect(inputElement).toBeInTheDocument();
@@ -37,14 +52,14 @@ describe("render chat", () => {
   test ("request to load list of messages on first render", async () => {
     axios.get.mockImplementation(() => Promise.resolve({data: messages}));
     act(() => {
-      render(<Chat />);
+      renderWithRedux(<Chat />);
     });
-    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(axios.get).toHaveBeenCalled();
   });
 
   test ("list of message is loaded on first render", async () => {
     axios.get.mockImplementation(() => Promise.resolve({data: messages}));
-    render(<Chat />);
+    renderWithRedux(<Chat />);
 
     expect(screen.queryByText(/new text message/i)).toBeNull();
     expect(await screen.findByText(/new text message/i)).toBeInTheDocument();

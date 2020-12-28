@@ -20,8 +20,13 @@ const useChatStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
     overflow: 'hidden',
   },
+  chatName: {
+    fontSize: 14,
+    height: 16,
+    margin: 0,
+  },
   messagesContainer: {
-    height: 'calc(100% - 32px)',
+    height: 'calc(100% - 48px)',
     borderBottom: '1px solid #DADADA',
     paddingBottom: theme.spacing(1),
     display: 'flex',
@@ -31,6 +36,7 @@ const useChatStyles = makeStyles(theme => ({
   },
   input: {
     height: 24,
+    flexShrink: '0',
   },
 }));
 
@@ -43,7 +49,9 @@ function Chat() {
   const authId = 'lvvSNZ609WCMjyOrQlC5';
 
   useEffect(() => {
-    fetchMessages();
+    if(chatId) {
+      fetchMessages();
+    }
   }, [fetchMessages, chatId]);
 
   const fetchMessages = () => getMessages(chatId).then((result) => {
@@ -87,6 +95,9 @@ function Chat() {
     <>
       <MembersList />
       <Box className={classes.container}>
+        <h1 className={classes.chatName} >
+          Chat: {chatId}
+        </h1>
         <div data-testid="messages-container" className={classes.messagesContainer}>
           {messages.map(message => <Message content={message.content} byMe={authId === message.author} />)}
         </div>

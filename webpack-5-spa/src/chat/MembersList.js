@@ -12,7 +12,7 @@ function MembersList() {
 
   return (
     <div>
-      <h2>Chat list</h2>
+      <div>Chat list</div>
       <ul>
         {chats.map( chat => <li key={chat} onClick={() => onClick(chat)}>{chat}</li>)}
       </ul>
