@@ -84,7 +84,7 @@ function Chat() {
 
   return (
     <Box className={classes.container}>
-      <div className={classes.messagesContainer}>
+      <div data-testid="messages-container" className={classes.messagesContainer}>
         {messages.map(message => <Message content={message.content} byMe={authId === message.author} />)}
       </div>
       <InputBase
