@@ -10,6 +10,12 @@ describe("renders message component", () => {
     expect(message).toBeInTheDocument();
   });
 
+  test ('renders message', () => {
+    const messageText = "message";
+    const { asFragment } = render(<Message content={messageText} />);
+    expect(asFragment(<Message content={messageText} />)).toMatchSnapshot();
+  })
+
   test("sets different class depending on if message was sent by current user", () => {
     render(<Message content='message' byMe={true} />);
     const message = screen.getByText(/message/i);
