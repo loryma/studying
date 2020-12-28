@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { makeStyles, Box, InputBase } from '@material-ui/core';
 import { sendMessage, getMessages } from './api';
 import Message from './Message';
+import MembersList from './MembersList';
 
 const useChatStyles = makeStyles(theme => ({
   container: {
@@ -38,12 +39,12 @@ function Chat() {
   const classes = useChatStyles();
   const [newMessage, setNewMessage] = useState('');
   const [messages, setMessages ] = useState([]);
-  const chatId = 'AnN7n46VFz5AyNHhqsGg';
+  const chatId = useSelector(state => state.chatId);
   const authId = 'lvvSNZ609WCMjyOrQlC5';
 
   useEffect(() => {
     fetchMessages();
-  }, [fetchMessages]);
+  }, [fetchMessages, chatId]);
 
   const fetchMessages = () => getMessages(chatId).then((result) => {
     const messagesData = result.data.documents;
@@ -83,18 +84,21 @@ function Chat() {
   };
 
   return (
-    <Box className={classes.container}>
-      <div data-testid="messages-container" className={classes.messagesContainer}>
-        {messages.map(message => <Message content={message.content} byMe={authId === message.author} />)}
-      </div>
-      <InputBase
-        value={newMessage} 
-        onChange={onMessageChange} 
-        onKeyDown={onMessageSend} 
-        placeholder={'Type a message...'}
-        className={classes.input}
-      />
-    </Box>
+    <>
+      <MembersList />
+      <Box className={classes.container}>
+        <div data-testid="messages-container" className={classes.messagesContainer}>
+          {messages.map(message => <Message content={message.content} byMe={authId === message.author} />)}
+        </div>
+        <InputBase
+          value={newMessage} 
+          onChange={onMessageChange} 
+          onKeyDown={onMessageSend} 
+          placeholder={'Type a message...'}
+          className={classes.input}
+        />
+      </Box>
+    </>
   );
 };
 

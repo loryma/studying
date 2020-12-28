@@ -1,0 +1,1 @@
+export const SET_RECEPIENT = 'SET_RECEPIENT';
