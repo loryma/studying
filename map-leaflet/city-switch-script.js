@@ -3,7 +3,7 @@ import { getMap } from './city-switch-map.js';
 const $cities = document.getElementById('cities');
 
 ;(async () => {
-    const response = await fetch('./db/cities.json');
+    const response = await fetch('https://raw.githubusercontent.com/loryma/studying/main/map-leaflet/db/cities.json');
 
     console.log(response);
     const cities = await response.json();

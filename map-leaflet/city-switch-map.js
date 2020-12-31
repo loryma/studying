@@ -3,7 +3,7 @@ let marker = null;
 
 export function getMap(position, tooltip) {
     if (map === null) {
-        map = L.map('map').setView(position, 15);
+        map = L.map('mapswitch').setView(position, 15);
     } else {
         map.flyTo(position);
     }
