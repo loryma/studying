@@ -11,6 +11,8 @@ class Switcher extends React.Component {
     );
   };
   _handleButtonClick = () => {
+    this.props.onChange(!this.props.value);
+    console.log(this.props.value);
     console.log('Button is clicked inside' +  this.state.name );
   }
 };
