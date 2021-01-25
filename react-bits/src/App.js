@@ -5,6 +5,7 @@ import Switcher from './event-handlers/Switcher';
 import StateApp from './one-way-data-flow/App.js';
 import Clock from './presentation-vs-container';
 // import AppTagit from './third-party-integrations/AppTagit';
+import SignInContainer from './reaching-into-component/SigInInContainer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <StateApp />
       <Clock time={new Date()} />
       {/* <AppTagit /> */}
+      <SignInContainer />
     </>
   );
 }
