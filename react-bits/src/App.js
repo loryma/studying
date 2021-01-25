@@ -6,6 +6,7 @@ import StateApp from './one-way-data-flow/App.js';
 import Clock from './presentation-vs-container';
 // import AppTagit from './third-party-integrations/AppTagit';
 import SignInContainer from './reaching-into-component/SigInInContainer';
+import Price from './format-text-via-component/Price';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
       <Clock time={new Date()} />
       {/* <AppTagit /> */}
       <SignInContainer />
+      <Price />
     </>
   );
 }
