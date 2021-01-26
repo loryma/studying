@@ -7,6 +7,7 @@ import Clock from './presentation-vs-container';
 // import AppTagit from './third-party-integrations/AppTagit';
 import SignInContainer from './reaching-into-component/SigInInContainer';
 import Price from './format-text-via-component/Price';
+import Scrollable from './findDomNode/UsingDomNodeExample';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
       {/* <AppTagit /> */}
       <SignInContainer />
       <Price />
+      <Scrollable />
     </>
   );
 }
