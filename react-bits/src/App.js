@@ -8,6 +8,8 @@ import Clock from './presentation-vs-container';
 import SignInContainer from './reaching-into-component/SigInInContainer';
 import Price from './format-text-via-component/Price';
 import Scrollable from './findDomNode/UsingDomNodeExample';
+import BoxComponent from './styles/StyleFunctions';
+import { ButtonBig, ButtonGreen, ButtonRed, ButtonOutline } from './styles/BaseComponent';
 
 function App() {
   return (
@@ -20,6 +22,11 @@ function App() {
       <SignInContainer />
       <Price />
       <Scrollable />
+      <BoxComponent />
+      <ButtonBig>Big</ButtonBig>
+      <ButtonGreen>Green</ButtonGreen>
+      <ButtonRed>Red</ButtonRed>
+      <ButtonOutline>Outline</ButtonOutline>
     </>
   );
 }

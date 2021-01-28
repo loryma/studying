@@ -1,11 +1,15 @@
 export const white = '#fff';
 export const black = '#111';
 export const blue = '#07c';
+export const green = 'green';
+export const red = 'red';
 
 export const colors = {
   white,
   black,
-  blue
+  blue,
+  green,
+  red,
 };
 
 export const space = [
@@ -13,13 +17,13 @@ export const space = [
   8,
   16,
   32,
-  64
+  64,
 ];
 
 const styles = {
   bold: 600,
   space,
-  colors
+  colors,
 };
 
 export default styles;
