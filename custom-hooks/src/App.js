@@ -1,4 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import usePrevious from './hooks/usePrevious';
 import useClickInside from './hooks/useClickInside';
 import useClickOutside from './hooks/useClickOutside';
 
@@ -18,14 +19,29 @@ function HooksApp() {
   const clickInsideRefOne = useRef();
   const clickInsideRefTwo = useRef();
   const clickOutsideRef = useRef();
+  const [value, setValue] = useState('');
 
   useClickInside(clickInsideRefOne, clickInsiderRefOneCallback);
   useClickInside(clickInsideRefTwo, clickInsiderRefTwoCallback);
 
   useClickOutside(clickOutsideRef, clickOutside);
 
+  const previous = usePrevious(value);
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.target);
+    const input = form.get("input");
+    setValue(input);
+  }
+
   return (
     <div>
+      <h3>Previous</h3>
+      <form onSubmit={onSubmit}>
+        <input name="input" type='text' />
+      </form>
+      {previous && <p>Previous: {previous}</p>}
       <h3>
         Click inside
       </h3>
