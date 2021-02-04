@@ -5,6 +5,7 @@ import useClickOutside from './hooks/useClickOutside';
 import useFetch from './hooks/useFetch';
 import useComponentDidMount from './hooks/useComponentDidMount';
 import UnmountMe from './components/UnmountMe';
+import Timer from './components/Timer';
 
 function clickInsiderRefOneCallback(e) {
   alert(`I am callback 1. Button by the name ${e.target.textContent} was clicked`);
@@ -56,6 +57,10 @@ function HooksApp() {
 
   return (
     <div>
+      <h3>
+        Set timer to see useTimeout hook in action
+      </h3>
+      <Timer />
       <h3>Previous</h3>
       <form onSubmit={onSubmit}>
         <input name="input" type='text' />
