@@ -3,6 +3,7 @@ import usePrevious from './hooks/usePrevious';
 import useClickInside from './hooks/useClickInside';
 import useClickOutside from './hooks/useClickOutside';
 import useFetch from './hooks/useFetch';
+import useComponentDidMount from './hooks/useComponentDidMount';
 
 function clickInsiderRefOneCallback(e) {
   alert(`I am callback 1. Button by the name ${e.target.textContent} was clicked`);
@@ -15,6 +16,14 @@ function clickInsiderRefTwoCallback(e) {
 function clickOutside(e) {
   console.log(`I am an outside callback`);
 }
+
+function componentJustMountedCallback() {
+  console.log('I am a callback that executes on component mount');
+};
+
+function componentUnmountedCallback() {
+  console.log('I am a callback that executes on component unmount');
+};
 
 function HooksApp() {
   const clickInsideRefOne = useRef();
@@ -31,6 +40,8 @@ function HooksApp() {
   useClickOutside(clickOutsideRef, clickOutside);
 
   const previous = usePrevious(value);
+
+  useComponentDidMount(componentJustMountedCallback);
 
   const onSubmit = (e) => {
     e.preventDefault();
