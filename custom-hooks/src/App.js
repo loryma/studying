@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import usePrevious from './hooks/usePrevious';
 import useClickInside from './hooks/useClickInside';
 import useClickOutside from './hooks/useClickOutside';
+import useFetch from './hooks/useFetch';
 
 function clickInsiderRefOneCallback(e) {
   alert(`I am callback 1. Button by the name ${e.target.textContent} was clicked`);
@@ -20,6 +21,9 @@ function HooksApp() {
   const clickInsideRefTwo = useRef();
   const clickOutsideRef = useRef();
   const [value, setValue] = useState('');
+  const [url, setUrl] = useState();
+  
+  const [todos, error] = useFetch(url);
 
   useClickInside(clickInsideRefOne, clickInsiderRefOneCallback);
   useClickInside(clickInsideRefTwo, clickInsiderRefTwoCallback);
@@ -61,6 +65,11 @@ function HooksApp() {
           child of element on which outside clicks are registered
         </div>
       </div>
+      <h3>Fetch</h3>
+      <button onClick={() => setUrl('https://jsonplaceholder.typicode.com/todos')}>
+        fetch list of todos
+      </button>
+      <ul>{todos && todos.map(el => <li key={el.id}>Id: {el.id}. Title: {el.title}</li>)}</ul>
     </div>
 
   );
