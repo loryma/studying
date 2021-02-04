@@ -4,6 +4,7 @@ import useClickInside from './hooks/useClickInside';
 import useClickOutside from './hooks/useClickOutside';
 import useFetch from './hooks/useFetch';
 import useComponentDidMount from './hooks/useComponentDidMount';
+import UnmountMe from './components/UnmountMe';
 
 function clickInsiderRefOneCallback(e) {
   alert(`I am callback 1. Button by the name ${e.target.textContent} was clicked`);
@@ -21,16 +22,13 @@ function componentJustMountedCallback() {
   console.log('I am a callback that executes on component mount');
 };
 
-function componentUnmountedCallback() {
-  console.log('I am a callback that executes on component unmount');
-};
-
 function HooksApp() {
   const clickInsideRefOne = useRef();
   const clickInsideRefTwo = useRef();
   const clickOutsideRef = useRef();
   const [value, setValue] = useState('');
   const [url, setUrl] = useState();
+  const [childMounted, setChildMounted] = useState(true);
   
   const [todos, error] = useFetch(url);
 
@@ -48,6 +46,12 @@ function HooksApp() {
     const form = new FormData(e.target);
     const input = form.get("input");
     setValue(input);
+  };
+
+  const onUnmountChildComponent = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setChildMounted(false);
   }
 
   return (
@@ -76,6 +80,10 @@ function HooksApp() {
           child of element on which outside clicks are registered
         </div>
       </div>
+      <h3>
+        useComponentWillUnmount hook
+      </h3>
+      {childMounted && <UnmountMe onClick={onUnmountChildComponent} />}
       <h3>Fetch</h3>
       <button onClick={() => setUrl('https://jsonplaceholder.typicode.com/todos')}>
         fetch list of todos
