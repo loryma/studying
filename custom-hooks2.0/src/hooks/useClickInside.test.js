@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ClickInsideComponent from '../components/ClickInsideComponent';
-import callback from '../components/callbackInsideClick';
+import callback from '../components/callbackClick';
 
 describe('useClickInside hook', () => {
 

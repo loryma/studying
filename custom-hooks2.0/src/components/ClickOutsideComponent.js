@@ -1,21 +1,21 @@
 import React, { useRef } from 'react';
-import useClickInside from '../hooks/useClickInside';
+import useClickOutside from '../hooks/useClickOutside';
 import callback from './callbackClick';
 
-function ClickInsideComponent() {
+function ClickOutsideComponent() {
   const divRef = useRef();
   
-  useClickInside(divRef, callback);
+  useClickOutside(divRef, callback);
 
   return (
-    <div>
+    <div data-testid="outer-div">
       I am parent 
       <div ref={divRef}>
-        I and my children have click listener
+        I and my children have click listener for outsideclicks
         <div>I am a child and my parent has click listener</div>
       </div>
     </div>
   )
 };
 
-export default ClickInsideComponent;
+export default ClickOutsideComponent;
