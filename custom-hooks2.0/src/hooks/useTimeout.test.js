@@ -12,7 +12,7 @@ afterEach(() => {
 });
 
 describe('useTimout hook', () => {
-  test ('should return new value after timeout', () => {
+  test ('should call callback after timeout', () => {
     renderHook(() => useTimeout(callback, 1000));
 
     expect(callback).not.toBeCalled();
