@@ -1,6 +1,7 @@
 import React from 'react';
 import SetRefComponent from './components/SetRefComponent';
 import CreateRefComponent from './components/CreateRefComponent';
+import CreateRefFunc from './components/CreateRefFunc';
 
 function App() {
 
@@ -8,6 +9,7 @@ function App() {
     <div>
       <SetRefComponent />
       <CreateRefComponent />
+      <CreateRefFunc />
     </div>
   );
 };
