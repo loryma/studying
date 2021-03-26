@@ -1,11 +1,13 @@
 import React from 'react';
-
+import SetRefComponent from './components/SetRefComponent';
+import CreateRefComponent from './components/CreateRefComponent';
 
 function App() {
 
   return (
     <div>
-      App
+      <SetRefComponent />
+      <CreateRefComponent />
     </div>
   );
 };
