@@ -1,23 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
+import PageWithPopup from './portal/PageWithPopup';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PageWithPopup buttonText={'Click me to see first popup'} contentClass={"pink"} />
+      <PageWithPopup buttonText={'Click me to see second popup'} contentClass={"yellow"} />
     </div>
   );
 }
